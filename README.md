@@ -27,3 +27,10 @@ that doesn't use a DSL.
 # Non Goals
 
 1. Non Linux support
+
+# Inventory
+
+I decided that for this project, I'd like inventories to be represented
+similarily to how svelte handles its routes. Groups are defined as directories,
+which contain a `machines.toml` and a `values.toml` which apply to all of
+machines under it.
