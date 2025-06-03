@@ -23,6 +23,7 @@ that doesn't use a DSL.
 12. Simple configuration using toml
 13. Provisoning for a device should happen atomically, if any action fails, it
     needs to be rolled back to its previous working state
+14. data driven tests
 
 # Non Goals
 

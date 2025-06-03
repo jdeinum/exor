@@ -36,6 +36,12 @@ pub struct Machine {
     pub host: String,
 }
 
+// required to deserialize into
+#[derive(Debug, Deserialize)]
+struct MachinesWrapper {
+    machines: Vec<Machine>,
+}
+
 /// Our variables specification
 /// Currently we'll assume everything is a string
 #[derive(Debug, Clone, Deserialize)]
@@ -47,7 +53,7 @@ pub struct Variables {
 /// Our receusive node structure
 #[derive(Debug)]
 pub struct InventoryNode {
-    pub path: PathBuf,
+    pub _path: PathBuf,
     pub machines: Vec<Machine>,
     pub vars: Variables,
     pub children: Vec<InventoryNode>,
@@ -65,8 +71,10 @@ fn load_inventory(path: &Path) -> Result<InventoryNode> {
     let values_path = path.join("values.toml");
 
     let machines: Vec<Machine> = if machines_path.exists() {
-        toml::from_str(&fs::read_to_string(&machines_path).context("read path to string")?)
-            .context("read machines")?
+        let w: MachinesWrapper =
+            toml::from_str(&fs::read_to_string(&machines_path).context("read path to string")?)
+                .context("read machines")?;
+        w.machines
     } else {
         vec![]
     };
@@ -89,7 +97,7 @@ fn load_inventory(path: &Path) -> Result<InventoryNode> {
     }
 
     Ok(InventoryNode {
-        path: path.to_path_buf(),
+        _path: path.to_path_buf(),
         machines,
         vars,
         children,
@@ -121,6 +129,7 @@ pub fn flatten_inventory(
     results
 }
 
+/// Exported function that is used by the rest of the system to get the inventory
 pub fn get_inventory(root: &Path) -> Result<Vec<MachineWithVars>> {
     let i = load_inventory(root).context("load inventory")?;
     Ok(flatten_inventory(&i, &HashMap::new()))
