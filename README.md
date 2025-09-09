@@ -1,11 +1,6 @@
 # Exor
 
-I want to build something from scratch that is reasonably complex and is
-also helpful for my job. I landed on Ansible, which is a Python based system
-that helps bring devices to a desired state.
-
-I know that things like NixOS solve a similar problem, but I want a solution
-that doesn't use a DSL.
+A toy ansible-like project that focuses on provisoning speed and consistency.
 
 # Goals
 
