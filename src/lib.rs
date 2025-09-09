@@ -1,7 +1,10 @@
-pub mod cli;
-pub mod command;
-pub mod error;
-pub mod identity;
-pub mod inventory;
-pub mod run;
-pub mod system;
+pub(crate) mod cli;
+pub(crate) mod command;
+pub(crate) mod error;
+pub(crate) mod identity;
+pub(crate) mod inventory;
+pub(crate) mod run;
+pub(crate) mod system;
+
+// used by main
+pub use run::run;

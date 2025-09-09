@@ -1,4 +1,4 @@
-use exor::run::run;
+use exor::run;
 use tracing::error;
 
 #[tokio::main]
