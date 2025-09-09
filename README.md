@@ -1,3 +1,7 @@
+[![Check](https://github.com/jdeinum/exor/workflows/check/badge.svg)](https://github.com/jdeinum/exor/actions)
+[![Audit](https://github.com/jdeinum/exor/workflows/audit/badge.svg)](https://github.com/jdeinum/exor/actions)
+[![Tests](https://github.com/jdeinum/exor/workflows/test/badge.svg)](https://github.com/jdeinum/exor/actions)
+
 # Exor
 
 A toy ansible-like project that focuses on provisoning speed and consistency.
